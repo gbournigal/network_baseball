@@ -84,10 +84,10 @@ def prepare_df(df, player_names):
         df_prueba['events'] == 'home_run',
         4,
         np.where(
-            df_prueba['events'].isin(['double','strikeout']),
+            df_prueba['events'].isin(['double']),
             2,
             np.where(
-                df_prueba['events'] == 'tirple',
+                df_prueba['events'] == 'triple',
                 3,
                 1),
         ))
