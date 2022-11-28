@@ -31,8 +31,9 @@ pitcher_wins = ['field_out',
 
 def get_df():
     df = statcast(start_dt='2022-04-06', 
-                  end_dt='2022-06-21',
-                  verbose=True)[['batter', 'pitcher', 'events']]
+                  end_dt='2022-08-03',
+                  verbose=True)
+    [['batter', 'pitcher', 'events']]
     df = df[df['events'].notna()]
     return df
   
