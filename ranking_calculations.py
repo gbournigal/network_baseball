@@ -79,7 +79,7 @@ def prepare_df(df, player_names):
             )
         )
     
-    df_prueba = df_prueba.dropna()
+    df_prueba = df_prueba.dropna(subset=['winner'])
     df_prueba['losser'] = np.where(
         df_prueba['winner']==df_prueba['batter_name'],
         df_prueba['pitcher_name'],
@@ -87,14 +87,17 @@ def prepare_df(df, player_names):
     
     df_prueba['value_plays'] = np.where(
         df_prueba['events'] == 'home_run',
-        4,
+        1.409,
         np.where(
             df_prueba['events'].isin(['double']),
-            2,
+            0.764,
             np.where(
                 df_prueba['events'] == 'triple',
-                3,
-                1),
+                1.063,
+                np.where(
+                    df_prueba['events'] == 'single',
+                    0.474,
+                    0.299)),
         ))
     
     df_edges = df_prueba[['winner', 'losser', 'value_plays']]

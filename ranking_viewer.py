@@ -9,8 +9,8 @@ import pickle
 import pandas as pd
 import streamlit as st
 
-st.set_page_config(page_title='Comparación Coberturas',
-                   page_icon='https://sb.gob.do/logos/isotiposb2020.jpg', 
+st.set_page_config(page_title='Baseball Network',
+                   page_icon='⚾', 
                    layout="wide", 
                    initial_sidebar_state="auto", 
                    menu_items=None)
@@ -56,8 +56,8 @@ table_pitchers, table_batters = ranking_tables(ranking)
 
 with col1:
     st.header('Ranking de Pitchers')
-    st.table(table_pitchers)
+    st.dataframe(table_pitchers, use_container_width=True)
     
 with col2:
     st.header('Ranking de Bateadores')
-    st.table(table_batters)
+    st.dataframe(table_batters, use_container_width=True)
