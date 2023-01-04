@@ -47,19 +47,21 @@ plays_values = {
 
 
 def get_df():
-    df = statcast(start_dt='2022-04-06', 
-                  end_dt='2022-08-03',
-                  verbose=True)
-    [['batter', 'pitcher', 'events']]
-    df = df[df['events'].notna()]
+    # df = statcast(start_dt='2022-04-06', 
+    #               end_dt='2022-08-03',
+    #               verbose=True)
+    # [['batter', 'pitcher', 'events']]
+    # df = df[df['events'].notna()]
+    df = pd.read_csv('base_df.csv')
     return df
   
 
 def player_names(df):
-    player_ids = list(dict.fromkeys(list(df['batter'].unique()) + list(df['pitcher'].unique())))
+    # player_ids = list(dict.fromkeys(list(df['batter'].unique()) + list(df['pitcher'].unique())))
     
-    player_names = playerid_reverse_lookup(player_ids, key_type='mlbam')
-    player_names['name'] = player_names['name_first'] + ' ' + player_names['name_last'] + '-' + player_names['key_mlbam'].astype(str)
+    # player_names = playerid_reverse_lookup(player_ids, key_type='mlbam')
+    # player_names['name'] = player_names['name_first'] + ' ' + player_names['name_last'] + '-' + player_names['key_mlbam'].astype(str)
+    player_names = pd.read_csv('player_names.csv')
     return player_names[['key_mlbam', 'name']]
 
 
